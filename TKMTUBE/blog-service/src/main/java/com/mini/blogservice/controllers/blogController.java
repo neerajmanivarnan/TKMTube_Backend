@@ -1,10 +1,12 @@
 package com.mini.blogservice.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,11 @@ public class blogController {
     @GetMapping("getAllBlogs")
     public ResponseEntity<List<Blog>> getAllBlogs(){
         return bService.getBlogs();
+    }
+
+    @GetMapping("getBlog/{id}")
+    public ResponseEntity<Optional<Blog>> getBlog(@PathVariable("id") int id ){
+        return bService.getBlog(id);
     }
 
     @PostMapping("add")
