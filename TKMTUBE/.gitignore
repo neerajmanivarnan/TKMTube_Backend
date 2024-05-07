@@ -1,0 +1,30 @@
+# Ignore application.properties files in specific locations
+media-service/src/main/resources/application.properties
+blog-service/src/main/resources/application.properties
+
+# Ignore common build artifacts
+target/
+out/
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+
+# Ignore OS specific temporary files
+.DS_Store
+
+# Ignore version control system files
+.git/
+.svn/
+
+# Ignore logs
+*.log
+
+# Ignore class files (if applicable to your project)
+*.class
+
+# Read me files are usually safe to ignore
+README.md
+
+# You can add more specific patterns here as needed
+
