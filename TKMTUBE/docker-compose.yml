@@ -2,11 +2,11 @@ version: '3.7'
 
 services:
   eureka-server:
-    image: neergasm/eureka-server:0.1 # Replace with your preferred Eureka Server image
+    image: neergasm/eureka-server:0.1
     ports:
       - "8761:8761"
     environment:
-      - SPRING_PROFILES_ACTIVE=docker  # Set profile for Eureka Server
+      - SPRING_PROFILES_ACTIVE=docker 
     restart: always
     networks:
       - tkmtube-network
@@ -14,21 +14,21 @@ services:
   api-gateway:
     image: neergasm/api-gateway:0.1
     ports:
-      - "8000:8000"  # Adjust port if needed
+      - "8000:8000"  
     environment:
-      - SPRING_PROFILES_ACTIVE=docker  # Set profile for API Gateway
-      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server  # Eureka server discovery URL
+      - SPRING_PROFILES_ACTIVE=docker 
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server  
     depends_on:
       - eureka-server
     networks:
       - tkmtube-network
 
   blog-service:
-    image: neergasm/blog-service:0.6  # Replace with path to your blog service Dockerfile
+    image: neergasm/blog-service:0.6  
     ports:
-      - "8080:8080"  # Adjust port if needed
+      - "8080:8080"  
     environment:
-      - SPRING_PROFILES_ACTIVE=docker  # Set profile for blog service
+      - SPRING_PROFILES_ACTIVE=docker  
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server
       - API_GATEWAY_SERVICE_URL=http://api-gateway
     depends_on:
@@ -38,12 +38,12 @@ services:
       - tkmtube-network
 
   user-details:
-    image: neergasm/user-details:0.1  # Replace with path to your blog service Dockerfile
+    image: neergasm/user-details:0.1 
     ports:
-      - "9000:9000"  # Adjust port if needed
+      - "9000:9000"  
     environment:
-      - SPRING_PROFILES_ACTIVE=docker  # Set profile for blog service
-      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server  # Eureka server discovery URL
+      - SPRING_PROFILES_ACTIVE=docker  
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server  
       - API_GATEWAY_SERVICE_URL=http://api-gateway
     depends_on:
       - eureka-server
@@ -51,6 +51,6 @@ services:
     networks:
       - tkmtube-network
 
-
 networks:
   tkmtube-network:
+
