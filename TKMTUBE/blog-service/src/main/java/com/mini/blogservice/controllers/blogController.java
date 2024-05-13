@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.mini.blogservice.models.Blog;
-
+import com.mini.blogservice.models.BlogReturn;
 import com.mini.blogservice.service.blogService;
 
 @RestController
@@ -27,7 +27,7 @@ public class blogController {
     blogService bService;
 
     @GetMapping("/")
-    public ResponseEntity<List<Blog>> getAllBlogs(){
+    public ResponseEntity<List<BlogReturn>> getAllBlogs(){
         return bService.getBlogs();
     }
 
