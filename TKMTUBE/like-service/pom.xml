@@ -8,11 +8,11 @@
 		<version>3.2.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.mediaservice</groupId>
-	<artifactId>media-service</artifactId>
+	<groupId>com.mini</groupId>
+	<artifactId>like-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>media-service</name>
-	<description>Demo project for Spring Boot</description>
+	<name>like-service</name>
+	<description>like-service for tkmtube</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.1</spring-cloud.version>
@@ -35,22 +35,6 @@
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 
-		
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-gcp-starter-storage</artifactId>
-			<version>1.2.8.RELEASE</version>
-		</dependency>
-
-
-		
-		<dependency>
-    		<groupId>com.google.cloud</groupId>
-    		<artifactId>spring-cloud-gcp-starter</artifactId>
-    		<version>5.2.1</version>
-		</dependency>
-
-
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
@@ -61,15 +45,6 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-<dependency>
-    <groupId>com.google.guava</groupId>
-    <artifactId>guava</artifactId>
-    <version>33.1.0-jre</version>
-</dependency>
-
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

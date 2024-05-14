@@ -15,6 +15,25 @@ spring:
          predicates:
            - Path=/auth/**
 
+       - id: profile-service
+         uri: lb://PROFILE-SERVICE
+         predicates:
+           - Path=/profile/**  
+         filters:
+           - AuthenticationFilter
+           
+       - id: media-service
+         uri: lb://MEDIA-SERVICE
+         predicates:
+           - Path=/media/**  
+
+       - id: like-service
+         uri: lb://LIKE-SERVICE
+         predicates:
+           - Path=/likes/** 
+         filters:
+           - AuthenticationFilter
+
  application:
    name: API-GATEWAY
 

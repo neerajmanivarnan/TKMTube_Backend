@@ -32,11 +32,18 @@ public class AuthConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        return http.csrf(customizer -> customizer.disable()).authorizeHttpRequests().requestMatchers("auth/register","auth/token","auth/validate","auth/getUser/{username}").permitAll().and().build();
 
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http.csrf().disable()
+                .authorizeHttpRequests()
+                .requestMatchers("/auth/register", "/auth/token", "/auth/validate","auth/getUser/{username}").permitAll()
+                .and()
+                .build();
     }
+
+
+   
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config)throws Exception{

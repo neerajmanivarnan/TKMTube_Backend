@@ -65,5 +65,11 @@ public class AuthController {
         return wrappedUser;
     }
 
+    @GetMapping("auth/extractUsername")
+    public String getUsernameMap(@RequestParam("token") String token){
+        String username = jwtService.extractUsername(token);
+        return username;
+    }
+
 
 }
