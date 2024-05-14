@@ -12,6 +12,7 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 @Component
 public class JwtUtil {
@@ -24,6 +25,26 @@ public class JwtUtil {
         Jws<Claims> newWord =Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token);
         System.out.println(newWord);
     }
+
+
+    public String extractUsername(String token) {
+        return extractClaim(token, Claims::getSubject);
+    }
+
+    public <T> T extractClaim(String token,Function<Claims, T> claimsResolver){
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+    private Claims extractAllClaims(String token){
+        return Jwts
+        .parserBuilder()
+        .setSigningKey(getSignKey())
+        .build()
+        .parseClaimsJws(token)
+        .getBody();
+    }
+
 
 
 

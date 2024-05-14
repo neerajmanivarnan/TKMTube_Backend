@@ -1,4 +1,4 @@
-package com.identityservice.authentication.services;
+package com.mini.blogservice.service;
 
 import java.util.Date;
 import java.util.HashMap;
