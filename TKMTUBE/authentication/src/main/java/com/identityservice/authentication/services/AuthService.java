@@ -53,6 +53,8 @@ public class AuthService {
         String Last = orgUser.getLastName();
 
         userDTO wrappedUser=new userDTO(First, Last); 
+        System.out.println(First);
+        System.out.println(Last);
 
         return wrappedUser;
         }catch(Exception e){

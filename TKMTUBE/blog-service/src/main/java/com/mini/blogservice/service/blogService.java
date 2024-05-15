@@ -11,9 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.mini.blogservice.dao.blogDao;
+import com.mini.blogservice.feign.LikeFeign;
 import com.mini.blogservice.feign.feign;
 import com.mini.blogservice.models.Blog;
 import com.mini.blogservice.models.BlogReturn;
+import com.mini.blogservice.models.PostId;
 import com.mini.blogservice.models.userDTO;
 
 @Service
@@ -24,6 +26,9 @@ public class blogService {
 
     @Autowired
     feign feignclient;
+
+    @Autowired
+    LikeFeign likeFeign;
 
     public ResponseEntity<List<Blog>> getBlogsFromBlogService() {
         
@@ -76,6 +81,10 @@ public class blogService {
 
         System.out.println("reached blog service");
 
+        PostId postId = new PostId();
+
+        int LikesOfApost;
+
         List<Blog> blogs = bDao.findAll();  // List of blogs from the database
         List<BlogReturn> blogsToBeReturned = new ArrayList<>();  // List to store enriched blogs
     
@@ -86,16 +95,17 @@ public class blogService {
         for (Blog blog : blogs) {
             blogToReturn.setUsername(blog.getUsername());
             blogToReturn.setId(blog.getId());
+            postId.setPostId(blogToReturn.getId());
             blogToReturn.setTitle(blog.getTitle());
             blogToReturn.setBody(blog.getBody());
-            blogToReturn.setLikes(blog.getLikes());
+            // blogToReturn.setLikes(blog.getLikes());
             blogToReturn.setCreatedAt(blog.getCreatedAt());
     
             // Fetch user data using Feign (handle potential exceptions)
             try {
                 System.out.println("entered the try block");
                 user = feignclient.returnUser(blog.getUsername());
-                System.out.println("called feign client");
+                System.out.println("called the user feign clienf=t");
                 if (user != null) { // Check for null before accessing fields
                     System.out.println("user is not null");
                     blogToReturn.setFirstName(user.getFirstName());
@@ -104,6 +114,9 @@ public class blogService {
                     // Handle case where user data is not found (e.g., set default values)
                     // You might log a warning or set placeholder values for first and last name
                 }
+                System.out.println("called feign client");
+                LikesOfApost = likeFeign.getAllLikes(postId);
+                blogToReturn.setLikes(LikesOfApost);
             } catch (Exception e) {
                 // Handle Feign client exceptions appropriately (e.g., log the error)
                 // Consider returning an error response
