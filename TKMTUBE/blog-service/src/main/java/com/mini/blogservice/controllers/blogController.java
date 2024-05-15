@@ -32,7 +32,8 @@ import jakarta.ws.rs.core.SecurityContext;
 
 @RestController
 @RequestMapping("blogs")
-@CrossOrigin(origins = "http://localhost:3000/blog")
+// @CrossOrigin(origins = "http://localhost:3000/blog")
+@CrossOrigin
 public class blogController {
 
     @Autowired

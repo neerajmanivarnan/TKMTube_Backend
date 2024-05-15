@@ -72,4 +72,24 @@ public class LikeService {
         
     }
 
+
+    public int countAllLikesOfAPostByUsername(PostId postId) {
+        System.out.println("called servicec method from like service");
+        Optional<List<Likes>> likeList = likeDao.findByPostId(postId.getPostId());
+        List<Likes> likesToBeReturned = likeList.get();
+
+        int LikeCountOfAPost=0;
+        for(Likes n: likesToBeReturned){
+            LikeCountOfAPost = LikeCountOfAPost+ n.likeCount;
+        }
+
+        System.out.println(postId.getPostId()+" : "+LikeCountOfAPost);
+
+        return LikeCountOfAPost;
+
+    }
+
+
+  
+
 }

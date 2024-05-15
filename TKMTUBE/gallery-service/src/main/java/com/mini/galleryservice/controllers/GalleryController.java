@@ -1,7 +1,9 @@
-package com.mini.profileservice;
+package com.mini.galleryservice.controllers;
+
 
 import java.io.IOException;
 import java.sql.Blob;
+import java.util.List;
 
 import javax.print.attribute.standard.Media;
 
@@ -19,22 +21,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.mini.profileservice.models.UserDTOBody;
-import com.mini.profileservice.services.ProfileService;
+import com.mini.galleryservice.models.Profile;
+import com.mini.galleryservice.models.UserDTOBody;
+import com.mini.galleryservice.services.GalleryService;
+
+
 
 @RestController
-@RequestMapping("profile")
+@RequestMapping("gallery")
 @CrossOrigin
-public class ProfileController {
+public class GalleryController {
     
     @Autowired
-    ProfileService pService;
+    GalleryService pService;
 
-    @GetMapping("fetch")
-    public String getProfilePictureUrl(@RequestBody UserDTOBody username){
-        String url =  pService.fetchUrlFromDb(username.getUsername());
-        return url;
+    @PostMapping("/")
+    public List<Profile> getProfilePictureUrl(@RequestBody UserDTOBody username){
+        // String url =  pService.fetchUrlFromDb(username.getUsername());
+        return pService.getAll();
+        
     }
+    
     
     @PostMapping(value="upload" , consumes = MediaType.MULTIPART_FORM_DATA_VALUE) // Updated endpoint to include username in the URL
     public String uploadFile( MultipartFile file, @RequestHeader("LoggedInUser") String username) throws IOException {
