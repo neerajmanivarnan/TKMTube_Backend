@@ -24,7 +24,6 @@ out/
 *.class
 
 # Read me files are usually safe to ignore
-README.md
 
 # You can add more specific patterns here as needed
 
