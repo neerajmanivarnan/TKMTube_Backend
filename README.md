@@ -55,4 +55,9 @@
 - `/gallery/upload`
 - `/gallery/`
 
+### AUTH-SERVICE
+#### http://localhost:9898
 
+### LIKE-SERVICE
+#### httpp://localhost:9090
+- `/likes/`
