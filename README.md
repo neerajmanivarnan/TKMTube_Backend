@@ -57,7 +57,6 @@
 
 ### AUTH-SERVICE
 #### http://localhost:9898
+- `auth/register`
+- `auth/login`
 
-### LIKE-SERVICE
-#### httpp://localhost:9090
-- `/likes/`
